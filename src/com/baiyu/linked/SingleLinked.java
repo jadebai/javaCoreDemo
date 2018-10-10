@@ -13,14 +13,14 @@ public class SingleLinked {
     }
 
     public void addFirstNode(Node node){
-        if (head.getNext() != null) {
-            node.setNext(head.getNext());
+        if (this.head.getNext() != null) {
+            node.setNext(this.head.getNext());
         }
-        head.setNext(node);
+        this.head.setNext(node);
     }
 
     public void addNode(Node node,int index){
-        Node nodeTemp = head;
+        Node nodeTemp = this.head;
         int i = 0;
         while (nodeTemp != null){
             if (index == i){
@@ -36,7 +36,7 @@ public class SingleLinked {
     }
 
     public void addLastNode(Node node){
-        Node nodeTemp = head;
+        Node nodeTemp = this.head;
         while (nodeTemp != null){
             if (nodeTemp.getNext() == null){
                 nodeTemp.setNext(node);
@@ -47,11 +47,33 @@ public class SingleLinked {
     }
 
     public void printNode(){
-        Node node = head;
+        if (this.head.getNext()==null){
+           return;
+        }
+        Node node = this.head.getNext();
         while (node != null){
             System.out.println(node.getData());
             node = node.getNext();
         }
+    }
+
+
+    public void recover(){
+        if (this.head.getNext() == null){
+            return;
+        }
+        Node node = this.head.getNext();
+        Node prenode = null;
+        Node nextnode = null;
+        while (node.getNext() !=null){
+            nextnode = node.getNext();
+            node.setNext(prenode);
+            prenode = node;
+            node = nextnode;
+        }
+        node.setNext(prenode);
+        head.setNext(node);
+        printNode();
     }
 
     public static void main(String[] args) {
@@ -64,5 +86,7 @@ public class SingleLinked {
         singleLinked.addLastNode(new Node(6,null));
         singleLinked.addNode(new Node(7,null),3);
         singleLinked.printNode();
+        System.out.println("-----------------------------------");
+        singleLinked.recover();
     }
 }
