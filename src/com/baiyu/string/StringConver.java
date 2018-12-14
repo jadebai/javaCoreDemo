@@ -48,7 +48,8 @@ public class StringConver {
 //            }
 //        }
 //        System.out.println(a.toString());
-        System.out.println(convert4("asdfgh"));
+//        System.out.println(convert4("asdfgh"));
+        System.out.println(Long.parseLong("0111111111111111111111111111111111111111111111111111111111111110",2));
      }
 
 
